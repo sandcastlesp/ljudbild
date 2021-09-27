@@ -1,0 +1,37 @@
+--[[
+#007813
+#000000
+#ff8805
+]]
+
+group = group or {}
+for w,_ in pairs(group) do
+  if b.win.is_valid(w) then
+    b.win.close(w, false)
+  end
+  group[w] = nil
+end
+acc = 3
+function iff(args)
+  args.focusable = args.focusable or false
+  args.c = (args.c or 0) + 50
+  if not (args.w or args.text) then
+    args.w = 30
+  end
+  if not args.r then
+    args.r = acc
+    acc = acc + args.h
+  end
+  group[b.f(args)] = true
+end
+iff {bg="#ff7815",h=4}
+iff {bg="#000000",h=1}
+iff {bg="#007813",h=1}
+iff {bg="#000000",h=1}
+iff {bg="#ff7815",h=2}
+iff {bg="#ff7815",fg="#ffa815",h=1, text = "      ▖    ▐ ▐  ▜██ ██▌       " }
+iff {bg="#ff7815",h=2}
+vim.cmd [[ redraw ]]
+iff {bg="#ff7815", fg="#0043bc", r=acc-1, text="🭊🬾 🭊🬾 🭊🬾 🭊🬾 🭊🬾 🭊🬾 🭊🬾", c=5, w=nil}
+iff {bg="#0043bc",h=2}
+
